@@ -4,12 +4,14 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -17,10 +19,13 @@ public class MainActivity extends AppCompatActivity {
 
     private Button logIn;
     private FloatingActionButton fab;
+    private BottomSheetBehavior bottomSheetBehavior;
+
     private View.OnClickListener snackbarOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             // Действия
+            bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HALF_EXPANDED);
         }
     };
 
@@ -49,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initUi() {
         logIn = findViewById(R.id.btn_login);
+
         logIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,6 +63,9 @@ public class MainActivity extends AppCompatActivity {
                 mSnackbar.show();
             }
         });
+        LinearLayout llBottomSheet = findViewById(R.id.bottom_sheet);
+        bottomSheetBehavior = BottomSheetBehavior.from(llBottomSheet);
+        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
     }
 
     @Override
