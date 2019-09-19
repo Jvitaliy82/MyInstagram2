@@ -16,6 +16,7 @@ import com.google.android.material.snackbar.Snackbar;
 public class MainActivity extends AppCompatActivity {
 
     private Button logIn;
+    private FloatingActionButton fab;
     private View.OnClickListener snackbarOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -35,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
                 R.string.close_drawer);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-        FloatingActionButton fab = findViewById(R.id.fab);
+        fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         logIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Snackbar mSnackbar = Snackbar.make(logIn, "Доступ ограничен!", Snackbar.LENGTH_LONG);
+                Snackbar mSnackbar = Snackbar.make(fab, "Доступ ограничен!", Snackbar.LENGTH_LONG);
                 mSnackbar.setAction("Открыть", snackbarOnClickListener);
                 mSnackbar.show();
             }

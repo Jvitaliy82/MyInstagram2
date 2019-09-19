@@ -16,13 +16,7 @@
         android:layout_marginBottom="178dp"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/btn_login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="18dp"
-            android:text="LogIn" />
+
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
@@ -60,9 +54,17 @@
                 android:theme="@style/EditTextStyle" />
 
         </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="18dp"
+            android:text="LogIn" />
+
     </LinearLayout>
 
     <include layout="@layout/bottom_sheet" />
-
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
