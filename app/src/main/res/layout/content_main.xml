@@ -61,7 +61,19 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="18dp"
-            android:text="LogIn" />
+            android:backgroundTint="@color/colorPrimary"
+            android:text="LogIn"
+            android:textColor="@color/cardview_light_background" />
+
+        <Button
+            android:id="@+id/btn_close"
+            style="?attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="18dp"
+            android:text="close"
+            android:textColor="@color/colorPrimary" />
 
     </LinearLayout>
 
