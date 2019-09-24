@@ -1,15 +1,15 @@
 package ru.jdeveloperapps.myinstagram2;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -17,7 +17,10 @@ import com.google.android.material.snackbar.Snackbar;
 
 public class MainActivity extends AppCompatActivity {
 
+    private final String TAG = "myLog";
+
     private Button logIn;
+    private Button close;
     private FloatingActionButton fab;
     private BottomSheetBehavior bottomSheetBehavior;
 
@@ -35,12 +38,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
-                R.string.open_drawer,
-                R.string.close_drawer);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+//        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
+//                R.string.open_drawer,
+//                R.string.close_drawer);
+//        drawer.addDrawerListener(toggle);
+//        toggle.syncState();
         fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initUi() {
         logIn = findViewById(R.id.btn_login);
+        close = findViewById(R.id.btn_close);
 
         logIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,6 +66,13 @@ public class MainActivity extends AppCompatActivity {
                 Snackbar mSnackbar = Snackbar.make(fab, "Доступ ограничен!", Snackbar.LENGTH_LONG);
                 mSnackbar.setAction("Открыть", snackbarOnClickListener);
                 mSnackbar.show();
+            }
+        });
+
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
         LinearLayout llBottomSheet = findViewById(R.id.bottom_sheet);
@@ -75,4 +87,15 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        switch (id) {
+            case android.R.id.home:
+                Log.d(TAG, "onOptionsItemSelected: нажали назад на тулбаре");
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 }
