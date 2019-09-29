@@ -6,7 +6,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -21,7 +20,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private final String TAG = "myLog";
 
-    private ProgressBar progressBar;
     private DrawerLayout drawer;
     private ImageView image;
 
@@ -37,7 +35,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 R.string.close_drawer);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-        progressBar = findViewById(R.id.pb_horizontal);
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         image = findViewById(R.id.main_image);
@@ -49,19 +46,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
-
-    public void clickProgressBar(View view) {
-        int id = view.getId();
-        switch (id) {
-            case R.id.btn_show:
-                progressBar.setVisibility(ProgressBar.VISIBLE);
-                break;
-            case R.id.btn_hide:
-                progressBar.setVisibility(ProgressBar.INVISIBLE);
-                break;
-        }
-    }
-
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
