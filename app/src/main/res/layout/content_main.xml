@@ -3,15 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity"
     tools:showIn="@layout/content_main">
 
-
-    <ImageView
-        android:id="@+id/main_image"
-        android:layout_width="300dp"
-        android:layout_height="200dp"
-        android:src="@drawable/fruit"
-        android:visibility="invisible" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/mRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="2dp" />
 
 </LinearLayout>
