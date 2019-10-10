@@ -16,9 +16,9 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 
-import ru.jdeveloperapps.myinstagram2.fragments.fruts.FragmentFrut1;
-import ru.jdeveloperapps.myinstagram2.fragments.fruts.FragmentFrut2;
-import ru.jdeveloperapps.myinstagram2.fragments.fruts.FragmentFrut3;
+import ru.jdeveloperapps.myinstagram2.fragments.Fragment1;
+import ru.jdeveloperapps.myinstagram2.fragments.Fragment2;
+import ru.jdeveloperapps.myinstagram2.fragments.Fragment3;
 import ru.jdeveloperapps.myinstagram2.ui.main.SectionPagerAdapter;
 
 
@@ -43,9 +43,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        Fragment fragmentFrut_1 = FragmentFrut1.newInstance();
-        Fragment fragmentFrut_2 = FragmentFrut2.newInstance();
-        Fragment fragmentFrut_3 = FragmentFrut3.newInstance();
+        Fragment fragmentFrut_1 = Fragment1.newInstance();
+        Fragment fragmentFrut_2 = Fragment2.newInstance();
+        Fragment fragmentFrut_3 = Fragment3.newInstance();
 
         SectionPagerAdapter pagerAdapter = new SectionPagerAdapter(getSupportFragmentManager());
         pagerAdapter.add(fragmentFrut_1, "фрукты");
@@ -71,10 +71,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = menuItem.getItemId();
         switch (id) {
             case R.id.nav_frut:
+                viewPager.setCurrentItem(0);
                 break;
             case R.id.nav_vegetables:
+                viewPager.setCurrentItem(1);
                 break;
             case R.id.nav_nature:
+                viewPager.setCurrentItem(2);
                 break;
         }
         drawer.closeDrawer(GravityCompat.START);

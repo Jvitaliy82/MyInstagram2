@@ -23,7 +23,10 @@ public class DataSourceBuilder {
                 buildFrut();
                 break;
             case 2:
-                buildVegetables();
+                buildVegetablesSib();
+                break;
+            case 22:
+                buildVegetablesTrop();
                 break;
             case 3:
                 buildNature();
@@ -52,17 +55,37 @@ public class DataSourceBuilder {
         }
     }
 
-    private void buildVegetables() {
-        TypedArray vegetablePictures = resources.obtainTypedArray(R.array.vegetable_picture);
+    private void buildVegetablesSib() {
+        TypedArray vegetablePictures = resources.obtainTypedArray(R.array.vegetable_picture_sib);
         int lenght = vegetablePictures.length();
         int[] fruts = new int[lenght];
         for (int i = 0; i < lenght; i++) {
             fruts[i] = vegetablePictures.getResourceId(i, 0);
         }
 
-        String[] tit = resources.getStringArray(R.array.vegetable_title);
+        String[] tit = resources.getStringArray(R.array.vegetable_title_sib);
 
-        String[] desc = resources.getStringArray(R.array.vegetable_desc);
+        String[] desc = resources.getStringArray(R.array.vegetable_desc_sib);
+
+        for (int i = 0; i < fruts.length; i++) {
+            CustModelCard custModelCard = new CustModelCard(
+                    tit[i], desc[i], fruts[i]
+            );
+            dataSource.add(custModelCard);
+        }
+    }
+
+    private void buildVegetablesTrop() {
+        TypedArray vegetablePictures = resources.obtainTypedArray(R.array.vegetable_picture_trop);
+        int lenght = vegetablePictures.length();
+        int[] fruts = new int[lenght];
+        for (int i = 0; i < lenght; i++) {
+            fruts[i] = vegetablePictures.getResourceId(i, 0);
+        }
+
+        String[] tit = resources.getStringArray(R.array.vegetable_title_trop);
+
+        String[] desc = resources.getStringArray(R.array.vegetable_desc_trop);
 
         for (int i = 0; i < fruts.length; i++) {
             CustModelCard custModelCard = new CustModelCard(

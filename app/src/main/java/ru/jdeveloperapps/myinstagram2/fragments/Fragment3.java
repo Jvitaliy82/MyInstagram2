@@ -1,4 +1,4 @@
-package ru.jdeveloperapps.myinstagram2.fragments.fruts;
+package ru.jdeveloperapps.myinstagram2.fragments;
 
 
 import android.os.Bundle;
@@ -18,15 +18,15 @@ import ru.jdeveloperapps.myinstagram2.CustRVAdapter;
 import ru.jdeveloperapps.myinstagram2.DataSourceBuilder;
 import ru.jdeveloperapps.myinstagram2.R;
 
-public class FragmentFrut1 extends Fragment {
+public class Fragment3 extends Fragment {
 
     private final List<CustModelCard> dataSource = new ArrayList<>();
     final CustRVAdapter adapter = new CustRVAdapter(dataSource);
     private RecyclerView rv;
     private DataSourceBuilder dataSourceBuilder;
 
-    public static FragmentFrut1 newInstance() {
-        FragmentFrut1 fragment = new FragmentFrut1();
+    public static Fragment3 newInstance() {
+        Fragment3 fragment = new Fragment3();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -35,15 +35,15 @@ public class FragmentFrut1 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_frut1, container, false);
+        View v = inflater.inflate(R.layout.fragment_frut3, container, false);
 
-        rv = v.findViewById(R.id.mRecyclerView);
+        rv = v.findViewById(R.id.mRecyclerViewNature);
         LinearLayoutManager linearLayout = new LinearLayoutManager(getContext());
         linearLayout.setOrientation(LinearLayoutManager.VERTICAL);
         rv.setLayoutManager(linearLayout);
 
         dataSourceBuilder = new DataSourceBuilder(getResources());
-        setData(1);
+        setData(3);
         rv.setAdapter(adapter);
 
         return v;
@@ -54,5 +54,4 @@ public class FragmentFrut1 extends Fragment {
         dataSource.removeAll(dataSource);
         dataSource.addAll(data);
     }
-
 }

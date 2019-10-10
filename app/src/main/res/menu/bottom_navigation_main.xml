@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_frut_sibiria"
+        android:icon="@drawable/ic_ac_unit_black_24dp"
+        android:title="Sibir" />
+    <item
+        android:id="@+id/menu_frut_tropic"
+        android:icon="@drawable/ic_brightness_7_black_24dp"
+        android:title="Tropic" />
+</menu>

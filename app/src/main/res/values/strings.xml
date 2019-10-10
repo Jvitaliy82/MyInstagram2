@@ -17,8 +17,4 @@
     <string name="open_drawer" translatable="false">Open drawer</string>
     <string name="close_drawer" translatable="false">Close drawer</string>
 
-    <string name="hello_blank_fragment_1">Hello blank fragment 1</string>
-    <string name="hello_blank_fragment_2">Hello blank fragment 2</string>
-    <string name="hello_blank_fragment_3">Hello blank fragment 3</string>
-
 </resources>
