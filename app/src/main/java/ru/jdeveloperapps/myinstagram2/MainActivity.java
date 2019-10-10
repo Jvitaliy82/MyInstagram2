@@ -1,10 +1,8 @@
 package ru.jdeveloperapps.myinstagram2;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -12,27 +10,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.tabs.TabLayout;
 
-import java.util.ArrayList;
-import java.util.List;
+import ru.jdeveloperapps.myinstagram2.fragments.fruts.FragmentFrut1;
+import ru.jdeveloperapps.myinstagram2.fragments.fruts.FragmentFrut2;
+import ru.jdeveloperapps.myinstagram2.fragments.fruts.FragmentFrut3;
+import ru.jdeveloperapps.myinstagram2.ui.main.SectionPagerAdapter;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    private final String TAG = "myLog";
-
     private DrawerLayout drawer;
-    private final List<CustModelCard> dataSource = new ArrayList<>();
-    final CustRVAdapter adapter = new CustRVAdapter(dataSource);
-    private FloatingActionButton fab;
-    private RecyclerView rv;
-    private DataSourceBuilder dataSourceBuilder;
+    private ViewPager viewPager;
+    private TabLayout tabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,43 +43,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        rv = findViewById(R.id.mRecyclerView);
-        LinearLayoutManager linearLayout = new LinearLayoutManager(this);
-        linearLayout.setOrientation(LinearLayoutManager.VERTICAL);
-        rv.setLayoutManager(linearLayout);
+        Fragment fragmentFrut_1 = FragmentFrut1.newInstance();
+        Fragment fragmentFrut_2 = FragmentFrut2.newInstance();
+        Fragment fragmentFrut_3 = FragmentFrut3.newInstance();
 
-        dataSourceBuilder = new DataSourceBuilder(getResources());
-        setData(1);
-        Log.d(TAG, "onCreate: ");
+        SectionPagerAdapter pagerAdapter = new SectionPagerAdapter(getSupportFragmentManager());
+        pagerAdapter.add(fragmentFrut_1, "фрукты");
+        pagerAdapter.add(fragmentFrut_2, "овощи");
+        pagerAdapter.add(fragmentFrut_3, "природа");
 
-        adapter.SetOnLongClickListener(new CustRVAdapter.OnLongClickListener() {
-            @Override
-            public void onLongClick(View view, int position) {
-                dataSource.remove(position);
-                adapter.notifyDataSetChanged();
-            }
-        });
-        rv.setAdapter(adapter);
-        rv.setItemAnimator(new DefaultItemAnimator());
+        viewPager = findViewById(R.id.view_pager);
+        viewPager.setAdapter(pagerAdapter);
 
-        fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dataSource.add(0, new CustModelCard("Картошка", "Картошка будет всегда", R.drawable.nature));
-                adapter.notifyDataSetChanged();
-            }
-        });
+        tabLayout = findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(viewPager);
     }
-
-    private void setData(int n) {
-        List<CustModelCard> data = dataSourceBuilder.build(n);
-        dataSource.removeAll(dataSource);
-        dataSource.addAll(data);
-    }
-
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -99,19 +71,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = menuItem.getItemId();
         switch (id) {
             case R.id.nav_frut:
-                setData(1);
-                adapter.notifyDataSetChanged();
-                Log.d(TAG, "onNavigationItemSelected: fruit");
                 break;
             case R.id.nav_vegetables:
-                setData(2);
-                adapter.notifyDataSetChanged();
-                Log.d(TAG, "onNavigationItemSelected: vegetables");
                 break;
             case R.id.nav_nature:
-                setData(3);
-                adapter.notifyDataSetChanged();
-                Log.d(TAG, "onNavigationItemSelected: nature");
                 break;
         }
         drawer.closeDrawer(GravityCompat.START);
