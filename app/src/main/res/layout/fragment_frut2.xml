@@ -9,7 +9,7 @@
     <FrameLayout
         android:id="@+id/containerFrame"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></FrameLayout>
+        android:layout_height="match_parent" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bnv"
@@ -19,6 +19,6 @@
         app:itemBackground="@color/colorPrimary"
         app:itemIconTint="@color/bnv_color_selector"
         app:itemTextColor="@color/bnv_color_selector"
-        app:menu="@menu/bottom_navigation_main"></com.google.android.material.bottomnavigation.BottomNavigationView>
+        app:menu="@menu/bottom_navigation_main" />
 
 </RelativeLayout>

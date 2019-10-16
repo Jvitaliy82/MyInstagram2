@@ -24,6 +24,9 @@ import ru.jdeveloperapps.myinstagram2.ui.main.SectionPagerAdapter;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    public static final String EXTRA_THEME = "EXTRA_THEME";
+    private int themeNumber;
+
     private DrawerLayout drawer;
     private ViewPager viewPager;
     private TabLayout tabLayout;
@@ -31,7 +34,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (savedInstanceState != null) {
+            themeNumber = savedInstanceState.getInt(EXTRA_THEME);
+
+            switch (themeNumber) {
+                case 0:
+                    setTheme(R.style.AppTheme_NoActionBar_Purple);
+                    break;
+                case 1:
+                    setTheme(R.style.AppTheme_NoActionBar_Green);
+                    break;
+            }
+        }
+
         setContentView(R.layout.activity_main);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         drawer = findViewById(R.id.drawer_layout);
@@ -66,6 +84,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_purple:
+                themeNumber = 0;
+                break;
+            case R.id.action_green:
+                themeNumber = 1;
+                break;
+        }
+        recreate();
+        return super.onOptionsItemSelected(item);
+    }
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         int id = menuItem.getItemId();
@@ -82,5 +115,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(EXTRA_THEME, themeNumber);
     }
 }
